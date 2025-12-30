@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stambecco Liqueurs</title>
+    <script>
+      // GitHub Pages fallback: reindirizza tutte le route a index.html
+      // Questo permette al router React di gestire le route
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search;
+        var hash = window.location.hash;
+        
+        // Rimuovi /404.html dal path se presente
+        if (path.includes('/404.html')) {
+          path = path.replace('/404.html', '');
+        }
+        
+        // Reindirizza a index.html mantenendo il path originale
+        // Il router React gestirà il routing lato client
+        var redirectPath = '/index.html';
+        if (path && path !== '/' && path !== '/index.html') {
+          redirectPath = '/index.html' + path;
+        }
+        
+        window.location.replace(redirectPath + search + hash);
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>JavaScript è necessario per questa applicazione. Abilita JavaScript nel tuo browser.</p>
+      <p><a href="/">Vai alla home</a></p>
+    </noscript>
+  </body>
+</html>
+
