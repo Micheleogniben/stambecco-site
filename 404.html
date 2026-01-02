@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stambecco Liqueurs</title>
     <script>
-      // GitHub Pages fallback: reindirizza tutte le route a index.html
+      // Fallback per SPA: reindirizza tutte le route a index.html
       // Questo permette al router React di gestire le route
       (function() {
         var path = window.location.pathname;
@@ -17,11 +17,14 @@
           path = path.replace('/404.html', '');
         }
         
-        // Reindirizza a index.html mantenendo il path originale
-        // Il router React gestirà il routing lato client
+        // Reindirizza SEMPRE a /index.html (senza aggiungere il path)
+        // Il router React gestirà il routing lato client usando history API
+        // Non aggiungere il path a /index.html per evitare loop infiniti
         var redirectPath = '/index.html';
+        
+        // Salva il path originale in sessionStorage per React Router
         if (path && path !== '/' && path !== '/index.html') {
-          redirectPath = '/index.html' + path;
+          sessionStorage.setItem('redirectPath', path);
         }
         
         window.location.replace(redirectPath + search + hash);
