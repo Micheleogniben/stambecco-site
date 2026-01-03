@@ -1,0 +1,16 @@
+# security.txt - Contatti per segnalazioni di sicurezza
+# 
+# Questo file fornisce informazioni di contatto per segnalare vulnerabilità di sicurezza.
+# Standard: RFC 9116 (https://www.rfc-editor.org/rfc/rfc9116.html)
+#
+# IMPORTANTE: Aggiorna questi contatti con informazioni reali prima del deploy in produzione
+
+Contact: mailto:security@example.com
+Expires: 2025-12-31T23:59:59.000Z
+Preferred-Languages: it, en
+Canonical: https://your-domain.com/.well-known/security.txt
+
+# Opzionale: Aggiungi informazioni aggiuntive
+# Policy: https://your-domain.com/security-policy
+# Hiring: https://your-domain.com/careers
+

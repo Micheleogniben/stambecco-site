@@ -1,0 +1,18 @@
+# robots.txt per Stambecco Liqueurs - Gestione Interna
+# 
+# Questo file dice ai crawler dei motori di ricerca quali pagine possono indicizzare.
+# Per un'applicazione di gestione interna, blocchiamo TUTTI i crawler.
+
+# Blocca tutti i crawler da tutte le pagine
+User-agent: *
+Disallow: /
+
+# Non seguire link (opzionale, ma utile per sicurezza)
+# Crawl-delay: 10
+
+# Eventualmente puoi permettere accesso a file pubblici (se necessario in futuro)
+# User-agent: *
+# Allow: /favicon.ico
+# Allow: /robots.txt
+# Disallow: /
+

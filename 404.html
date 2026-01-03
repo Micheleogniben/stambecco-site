@@ -7,6 +7,7 @@
     <script>
       // Fallback per SPA: reindirizza tutte le route a index.html
       // Questo permette al router React di gestire le route
+      // Funziona per GitHub Pages, Apache, nginx e altri server statici
       (function() {
         var path = window.location.pathname;
         var search = window.location.search;
@@ -17,17 +18,27 @@
           path = path.replace('/404.html', '');
         }
         
-        // Reindirizza SEMPRE a /index.html (senza aggiungere il path)
-        // Il router React gestirà il routing lato client usando history API
-        // Non aggiungere il path a /index.html per evitare loop infiniti
-        var redirectPath = '/index.html';
+        // Se siamo già su index.html, non fare redirect (evita loop)
+        if (path === '/index.html' || path === '/') {
+          // Se c'è un path salvato, usalo
+          var savedPath = sessionStorage.getItem('redirectPath');
+          if (savedPath) {
+            sessionStorage.removeItem('redirectPath');
+            window.history.replaceState(null, '', savedPath + search + hash);
+            window.location.reload();
+            return;
+          }
+          return;
+        }
         
         // Salva il path originale in sessionStorage per React Router
         if (path && path !== '/' && path !== '/index.html') {
           sessionStorage.setItem('redirectPath', path);
         }
         
-        window.location.replace(redirectPath + search + hash);
+        // Reindirizza a /index.html
+        // Il router React leggerà redirectPath da sessionStorage e navigherà alla route corretta
+        window.location.replace('/index.html' + search + hash);
       })();
     </script>
   </head>
