@@ -8,44 +8,10 @@
     <meta name="description" content="Sistema di gestione interna per il liquorificio artigianale Stambecco Liqueurs" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Stambecco Liqueurs - Gestione</title>
-    <script>
-      // Fix per GitHub Pages: quando viene servito 404.html, 
-      // reindirizza a index.html mantenendo il path originale nell'URL
-      // Questo permette a React Router di gestire il routing correttamente
-      (function() {
-        var path = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        
-        // Se siamo già su index.html o root, non fare nulla
-        if (path === '/index.html' || path === '/') {
-          return;
-        }
-        
-        // Se siamo su /index (senza .html), reindirizza a /index.html
-        if (path === '/index') {
-          window.location.replace('/index.html' + search + hash);
-          return;
-        }
-        
-        // Per GitHub Pages: cambia l'URL a /index.html mantenendo il path
-        // usando history.replaceState, poi ricarica la pagina
-        // Questo permette agli asset di caricarsi correttamente da /
-        var newPath = '/index.html';
-        history.replaceState(null, '', newPath + search + hash);
-        
-        // Salva il path originale in sessionStorage per React Router
-        sessionStorage.setItem('redirectPath', path);
-        
-        // Ricarica la pagina per caricare index.html con gli asset corretti
-        window.location.reload();
-      })();
-    </script>
+    <script type="module" crossorigin src="/assets/index-dRbwYW0S.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-SG0g5Gfa.css">
   </head>
   <body>
-    <noscript>
-      <p>JavaScript è necessario per questa applicazione. Abilita JavaScript nel tuo browser.</p>
-      <p><a href="/">Vai alla home</a></p>
-    </noscript>
+    <div id="root"></div>
   </body>
 </html>
