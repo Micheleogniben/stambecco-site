@@ -1,52 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stambecco Liqueurs</title>
-    <script>
-      // Fallback per SPA: reindirizza tutte le route a index.html
-      // Questo permette al router React di gestire le route
-      // Funziona per GitHub Pages, Apache, nginx e altri server statici
-      (function() {
-        var path = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        
-        // Rimuovi /404.html dal path se presente
-        if (path.includes('/404.html')) {
-          path = path.replace('/404.html', '');
-        }
-        
-        // Se siamo già su index.html, non fare redirect (evita loop)
-        if (path === '/index.html' || path === '/') {
-          // Se c'è un path salvato, usalo
-          var savedPath = sessionStorage.getItem('redirectPath');
-          if (savedPath) {
-            sessionStorage.removeItem('redirectPath');
-            window.history.replaceState(null, '', savedPath + search + hash);
-            window.location.reload();
-            return;
-          }
-          return;
-        }
-        
-        // Salva il path originale in sessionStorage per React Router
-        if (path && path !== '/' && path !== '/index.html') {
-          sessionStorage.setItem('redirectPath', path);
-        }
-        
-        // Reindirizza a /index.html
-        // Il router React leggerà redirectPath da sessionStorage e navigherà alla route corretta
-        window.location.replace('/index.html' + search + hash);
-      })();
-    </script>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="description" content="Sistema di gestione interna per il liquorificio artigianale Stambecco Liqueurs" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Stambecco Liqueurs - Gestione</title>
   </head>
   <body>
-    <noscript>
-      <p>JavaScript è necessario per questa applicazione. Abilita JavaScript nel tuo browser.</p>
-      <p><a href="/">Vai alla home</a></p>
-    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

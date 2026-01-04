@@ -1,17 +1,21 @@
-# Apache configuration per SPA (Single Page Application)
-# Questo file permette a React Router di gestire il routing lato client
-# Serve sempre index.html per tutte le route (fallback)
+# Apache configuration per SPA - React Router
+# Serve sempre index.html per tutte le route che non sono file esistenti
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
   
-  # Se il file richiesto esiste, servilo direttamente
+  # Se la richiesta è per un file esistente, servilo direttamente
   RewriteCond %{REQUEST_FILENAME} !-f
+  # Se la richiesta è per una directory esistente, servila
   RewriteCond %{REQUEST_FILENAME} !-d
-  
-  # Altrimenti, reindirizza a index.html (mantenendo query string e hash)
-  RewriteRule . /index.html [L]
+  # Se la richiesta NON è per index.html, reindirizza a index.html
+  RewriteCond %{REQUEST_URI} !^/index\.html$
+  # Se la richiesta è per /index (senza .html), reindirizza a /index.html
+  RewriteCond %{REQUEST_URI} ^/index$
+  RewriteRule ^ /index.html [L,R=301]
+  # Reindirizza tutto il resto a index.html (mantiene query string)
+  RewriteRule ^ /index.html [L]
 </IfModule>
 
 # Headers per sicurezza e performance
@@ -26,4 +30,5 @@
     Header set Cache-Control "no-cache, no-store, must-revalidate"
   </FilesMatch>
 </IfModule>
+
 
