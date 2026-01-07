@@ -5,18 +5,24 @@
   RewriteEngine On
   RewriteBase /
   
-  # Se la richiesta è per un file esistente, servilo direttamente
-  RewriteCond %{REQUEST_FILENAME} !-f
-  # Se la richiesta è per una directory esistente, servila
-  RewriteCond %{REQUEST_FILENAME} !-d
-  # Se la richiesta NON è per index.html, reindirizza a index.html
+  # Se la richiesta è per un file esistente (escluso index.html), servilo direttamente
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteCond %{REQUEST_URI} !^/index\.html$
-  # Se la richiesta è per /index (senza .html), reindirizza a /index.html
-  RewriteCond %{REQUEST_URI} ^/index$
-  RewriteRule ^ /index.html [L,R=301]
-  # Reindirizza tutto il resto a index.html (mantiene query string)
+  RewriteRule . - [L]
+  
+  # Se la richiesta è per una directory esistente, servila
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule . - [L]
+  
+  # Per tutte le altre richieste, reindirizza a index.html (mantiene query string)
+  # Questo permette a React Router di gestire il routing lato client
+  RewriteCond %{REQUEST_URI} !^/index\.html$
   RewriteRule ^ /index.html [L]
 </IfModule>
+
+# Fallback per server che non supportano mod_rewrite
+# Reindirizza 404 a index.html
+ErrorDocument 404 /index.html
 
 # Headers per sicurezza e performance
 <IfModule mod_headers.c>
